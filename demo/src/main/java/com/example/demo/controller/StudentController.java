@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
-import org.hibernate.query.Page;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,23 +9,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
 @RestController
-
+@RequestMapping("/student")
 public class StudentController {
     @Autowired
     StudentService studservice;
 
-     @GetMapping("/get/all")
-    public List<Student> getEmployee(){
-        return studservice.getEmployee();
+    @PostMapping("/add")
+    public Student addStudent(@RequestBody Student stud){
+        return studservice.addStudent(stud);
+    }
+    
+
+    @GetMapping("/get/all")
+    public List<Student> getStudent(){
+        return studservice.getStudent();
     }
 
     @GetMapping("/get/id:{id}")
@@ -35,15 +40,11 @@ public class StudentController {
     }
 
     @GetMapping("/get/name:{name}")
-    public List<Student> getEmployeebyName(@PathVariable String name){
+    public List<Student> getStudnetbyName(@PathVariable String name){
         return studservice.findByName(name);
     }
 
-    @PostMapping("/add")
-    public Student addEmployee(@RequestBody Student emp){
-        return studservice.addEmployee(emp);
-    }
-    
+  
     @GetMapping("/student")
     public Page<Student> getPage(@RequestParam int page,@RequestParam int size){
         return studservice.getPage(page,size);

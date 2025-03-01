@@ -8,10 +8,18 @@ import jakarta.persistence.Id;
 @Entity
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String email;
+    
+    public Users(Long id, String username, String email) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+    }
+    public Users() {
+    }
     public Long getId() {
         return id;
     }

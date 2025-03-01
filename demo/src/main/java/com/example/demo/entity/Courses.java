@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Courses {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -31,7 +30,6 @@ public class Courses {
     }
     public void setDescription(String description) {
         this.description = description;
-
     }
     public void setTrainer(String trainer) {
         this.trainer = trainer;
@@ -39,5 +37,5 @@ public class Courses {
   
     public String getTrainer() {
         return trainer;
-}
+    }
 }

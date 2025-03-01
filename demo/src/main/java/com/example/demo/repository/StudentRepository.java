@@ -13,6 +13,6 @@ public interface StudentRepository extends JpaRepository<Student, Long>
 {
     public List<Student> findByName(String name);
 
-    @Query("SELECT e FROM Student e WHERE e.emailaddress= :email")
+    @Query("SELECT e FROM Student e WHERE e.email= :email")
     public List<Student> findByEmail(String email);
 }

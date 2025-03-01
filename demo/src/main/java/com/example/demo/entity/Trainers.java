@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
-import org.hibernate.annotations.GeneratorType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +11,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Trainers {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String trainerName;
     private String email;
@@ -20,6 +19,22 @@ public class Trainers {
     private LocalDate endDate;
     private String AssignedCourses;
     private String Course;
+    
+
+    public Trainers() {
+    }
+    
+    public Trainers(Long id, String trainerName, String email, LocalDate startDate, LocalDate endDate,
+            String assignedCourses, String course) {
+        this.id = id;
+        this.trainerName = trainerName;
+        this.email = email;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        AssignedCourses = assignedCourses;
+        Course = course;
+    }
+
     public Long getId() {
         return id;
     }

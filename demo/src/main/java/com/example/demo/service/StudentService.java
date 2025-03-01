@@ -19,11 +19,11 @@ public class StudentService {
     @Autowired
     StudentRepository studentrepo;
 
-    public Student addEmployee(Student student){
+    public Student addStudent(Student student){
         return studentrepo.save(student);
     }
     
-    public List<Student> getEmployee(){
+    public List<Student> getStudent(){
         return studentrepo.findAll();
     }
 
@@ -51,6 +51,9 @@ public class StudentService {
     public void deleteStudent(Long id){
         if(studentrepo.existsById(id)){
             studentrepo.deleteById(id);
+        }
+        else{
+            throw new EntityNotFoundException("Student not found");
         }
     }
     
