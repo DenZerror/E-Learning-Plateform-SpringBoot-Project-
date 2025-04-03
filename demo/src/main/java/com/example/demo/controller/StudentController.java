@@ -17,17 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 
+import jakarta.transaction.Transactional;
+
+
 @RestController
+@Transactional
 @RequestMapping("/student")
+
+
 public class StudentController {
     @Autowired
     StudentService studservice;
+
 
     @PostMapping("/add")
     public Student addStudent(@RequestBody Student stud){
         return studservice.addStudent(stud);
     }
     
+
 
     @GetMapping("/get/all")
     public List<Student> getStudent(){

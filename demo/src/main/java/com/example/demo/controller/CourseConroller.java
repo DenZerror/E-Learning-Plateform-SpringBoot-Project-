@@ -18,17 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Courses;
 import com.example.demo.service.CourseService;
 
+import jakarta.transaction.Transactional;
+
 @RestController
 @RequestMapping("/courses")
+@Transactional
 public class CourseConroller {
     @Autowired
     CourseService courseservice;
+
 
     @PostMapping("/add")
     public Courses addCourses(@RequestBody Courses stud){
         return courseservice.addCourses(stud);
     }
-    
 
     @GetMapping("/get/all")
     public List<Courses> getCourses(){
